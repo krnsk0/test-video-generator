@@ -4,6 +4,8 @@ type IText = {
   x?: string;
   y?: string;
   text?: string;
+  box?: boolean;
+  boxcolor?: string;
 };
 
 export const text = ({
@@ -12,6 +14,8 @@ export const text = ({
   x = `(w-text_w)/2`,
   y = `(h-text_h)/2`,
   text = 'default',
+  box = false,
+  boxcolor = 'black',
 }: IText) => {
   return `
     drawtext=
@@ -21,5 +25,14 @@ export const text = ({
     x=${x}:
     y=${y}:
     text=\\'${text}\\'
+    ${
+      box
+        ? `
+    :box=1:
+    boxcolor=${boxcolor}:
+    boxborderw=5
+    `
+        : ``
+    }
   `;
 };

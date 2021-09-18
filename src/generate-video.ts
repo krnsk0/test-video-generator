@@ -17,7 +17,7 @@ type IGenerate = {
 /**
  * use ffmpeg to generate a test video with the given paramaters
  */
-export const generate = ({
+export const generateVideo = ({
   seconds = 10,
   width = 1280,
   height = 720,
