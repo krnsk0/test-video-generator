@@ -6,6 +6,8 @@ type IText = {
   text?: string;
   box?: boolean;
   boxcolor?: string;
+  // e.g. lt(mod(t\,3)\,1)
+  enable?: string;
 };
 
 export const text = ({
@@ -16,6 +18,7 @@ export const text = ({
   text = 'default',
   box = false,
   boxcolor = 'black',
+  enable = '',
 }: IText) => {
   return `
     drawtext=
@@ -34,5 +37,6 @@ export const text = ({
     `
         : ``
     }
+    ${enable ? `:enable=${enable}` : ''}
   `;
 };

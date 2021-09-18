@@ -27,7 +27,7 @@ export const makeTestVideo = ({
     width,
     height,
     filters: joinFilters(
-      // at top of screen
+      // screen top center
       text({ text: `${outname}`, size, y: `${margin}` }),
       text({ text: `${width}x${height}`, size, y: `${margin + size}` }),
       text({ text: `FPS: ${fps}`, size, y: `${margin + size * 2}` }),
@@ -38,7 +38,19 @@ export const makeTestVideo = ({
         size: size * 4,
       }),
 
-      // screen bottom
+      // screen bottom left
+      text({
+        text: `audio`,
+        size,
+        x: `${margin * 3}`,
+        y: `(h-${size + margin * 2})`,
+        box: true,
+        boxcolor: 'white',
+        color: 'black',
+        enable: `lt(mod(t\\,1)\\,0.05)`, // every second for 0.5
+      }),
+
+      // screen bottom center
       text({ text: `frame: %{n}`, size, y: `(h-${size + margin})` }),
     ),
   });
