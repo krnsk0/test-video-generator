@@ -1,9 +1,11 @@
 import { generateVideo } from './generate-video';
+import { generateAudio } from './generate-audio';
 import { text } from './text';
 import { joinFilters } from './utils';
 
 type IMakeTestVideo = {
   fps: number;
+  duration: number;
   width: number;
   height: number;
   outname: string;
@@ -13,8 +15,9 @@ type IMakeTestVideo = {
  * Makes a test video with some useful information printed
  * to the screen: its width, height, fps, and timestamps.
  */
-export const makeTestVideo = ({
+export const makeTestVideo = async ({
   fps,
+  duration,
   width,
   height,
   outname,
@@ -22,10 +25,11 @@ export const makeTestVideo = ({
   const size = 40; // base font size
   const margin = 10;
 
-  return generateVideo({
+  await generateVideo({
     fps,
     width,
     height,
+    duration,
     filters: joinFilters(
       // screen top center
       text({ text: `${outname}`, size, y: `${margin}` }),
@@ -54,4 +58,8 @@ export const makeTestVideo = ({
       text({ text: `frame: %{n}`, size, y: `(h-${size + margin})` }),
     ),
   });
+
+  await generateAudio(duration);
+
+  return Promise.resolve();
 };

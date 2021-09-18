@@ -1,10 +1,9 @@
 import { spawn } from 'child_process';
+import { flatmap } from './utils';
 const ffmpegPath = require('ffmpeg-static');
-import { flatmap, joinFilters } from './utils';
-import { text } from './text';
 
 type IGenerate = {
-  seconds?: number;
+  duration?: number;
   width?: number;
   height?: number;
   fps?: number;
@@ -18,7 +17,7 @@ type IGenerate = {
  * use ffmpeg to generate a test video with the given paramaters
  */
 export const generateVideo = ({
-  seconds = 10,
+  duration = 10,
   width = 1280,
   height = 720,
   fps = 25,
@@ -34,14 +33,14 @@ export const generateVideo = ({
   const inputFiltergraph = `
     color=
     s=${width}x${height}:
-    duration=${seconds}:
+    duration=${duration}:
     rate=${fps}:
     c=${bgColor}
   `;
 
   const args = flatmap([
     ['-hide_banner'],
-    ['-t', seconds.toString()],
+    ['-t', duration.toString()],
     ['-f', 'lavfi'],
     ['-i', inputFiltergraph],
     ['-c:v', 'libx264'],
