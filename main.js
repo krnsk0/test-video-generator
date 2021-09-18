@@ -5,29 +5,41 @@ const flatmap = (arr) => {
   return arr.reduce((a, e) => a.concat(e), []);
 };
 
-const removeSpace = (s) => s[0].replace(/\s+/g, '');
-
-const fps = 30;
-const seconds = 3;
+const fps = 100;
+const seconds = 5;
 const width = 1280;
 const height = 720;
 const outName = 'out.mp4';
-const filtergraph = removeSpace`
-drawtext=fontfile=DroidSansMono.ttf:
-timecode='09\\:57\\:00\\:00':
-x=(w-tw)/2:
-y=(w-ty)/2:
-fontcolor=white
+const color = 'blue';
+
+const inputFiltergraph = `
+color=
+s=${width}x${height}:
+duration=${seconds}:
+rate=${fps}:
+c=${color}
 `;
+
+const makeFilter = (text, options) => `
+drawtext=
+fontfile=roboto.ttf:
+fontsize=${options?.size ?? 30}:
+fontcolor=${options?.color ?? 'white'}:
+x=${options?.x ?? `(w-text_w)/2`}:
+y=${options?.y ?? `(h-text_h)/2`}:
+text='${text}'
+`;
+
+const joinFilters = (...filters) => filters.join(',');
 
 const args = flatmap([
   ['-hide_banner'],
   ['-t', seconds],
   ['-f', 'lavfi'],
-  ['-i', `color=c=black:s=${width}x${height}`],
+  ['-i', inputFiltergraph],
   ['-c:v', 'libx264'],
-  ['-r', fps], // set fps
   ['-pix_fmt', 'yuv420p'],
+  ['-vf', joinFilters(makeFilter('hello'), makeFilter('hi'))],
   ['-y'],
   [`./output/${outName}`],
 ]);
