@@ -20,6 +20,6 @@ export const text = ({
     fontcolor=${color}:
     x=${x}:
     y=${y}:
-    text='${text}'
+    text=\\'${text}\\'
   `;
 };

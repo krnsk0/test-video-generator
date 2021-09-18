@@ -11,6 +11,7 @@ type IGenerate = {
   bgColor?: string;
   outName?: string;
   play?: boolean;
+  filters?: string;
 };
 
 /**
@@ -23,7 +24,7 @@ export const generate = ({
   fps = 25,
   bgColor = 'blue',
   outName = 'out.mp4',
-  play = false,
+  filters = '',
 }: IGenerate): Promise<void> => {
   /**
    * in lavfi mode the input comes from a filtergraph string
@@ -45,7 +46,7 @@ export const generate = ({
     ['-i', inputFiltergraph],
     ['-c:v', 'libx264'],
     ['-pix_fmt', 'yuv420p'],
-    ['-vf', joinFilters(text({ text: 'hello' }), text({ text: 'test' }))],
+    ['-vf', filters],
     ['-loglevel', 'warning'],
     ['-y'],
     [`./output/${outName}`],
