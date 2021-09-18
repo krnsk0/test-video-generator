@@ -1,0 +1,8 @@
+# what is this?
+makes test videos using ffmpeg filtergraphs. output is useful for verifying sync of video sequencing and composition systems which take in files of variable framerate
+
+# dependencies
+just node and npm; `npm i` takes care of the rest. version in `.nvmrc`.
+
+# quickstart
+`npm run start`
