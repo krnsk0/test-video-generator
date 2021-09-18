@@ -30,7 +30,7 @@ export const text = ({
         ? `
     :box=1:
     boxcolor=${boxcolor}:
-    boxborderw=5
+    boxborderw=15
     `
         : ``
     }

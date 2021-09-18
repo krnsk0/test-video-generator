@@ -28,21 +28,18 @@ export const makeTestVideo = ({
     height,
     filters: joinFilters(
       // at top of screen
-      text({ text: `${width}x${height}`, size, y: `${margin}` }),
-      text({ text: `FPS: ${fps}`, size, y: `${margin + size}` }),
-      text({ text: `${outname}`, size, y: `${margin + size * 2}` }),
+      text({ text: `${outname}`, size, y: `${margin}` }),
+      text({ text: `${width}x${height}`, size, y: `${margin + size}` }),
+      text({ text: `FPS: ${fps}`, size, y: `${margin + size * 2}` }),
 
       // screen center
       text({
         text: `%{pts \: hms}`,
         size: size * 4,
-        box: true,
-        boxcolor: 'black',
-        color: 'white',
       }),
 
       // screen bottom
-      text({ text: `n=%{n}`, size, y: `(h-${size + margin})` }),
+      text({ text: `frame: %{n}`, size, y: `(h-${size + margin})` }),
     ),
   });
 };
