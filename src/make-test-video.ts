@@ -11,6 +11,7 @@ type IMakeTestVideo = {
   width: number;
   height: number;
   outname: string;
+  bgcolor: string
 };
 
 /**
@@ -23,6 +24,7 @@ export const makeTestVideo = async ({
   width,
   height,
   outname,
+  bgcolor
 }: IMakeTestVideo): Promise<void> => {
   await ensureDir('./tmp');
 
@@ -34,6 +36,7 @@ export const makeTestVideo = async ({
     width,
     height,
     duration,
+    bgcolor,
     outname: 'temp.mp4',
     filters: joinFilters(
       // screen top center

@@ -7,7 +7,7 @@ type IGenerate = {
   width?: number;
   height?: number;
   fps?: number;
-  bgColor?: string;
+  bgcolor?: string;
   outname?: string;
   play?: boolean;
   filters?: string;
@@ -21,7 +21,7 @@ export const generateVideo = ({
   width = 1280,
   height = 720,
   fps = 25,
-  bgColor = 'blue',
+  bgcolor = 'blue',
   outname = 'temp.mp4',
   filters = '',
 }: IGenerate): Promise<void> => {
@@ -35,7 +35,7 @@ export const generateVideo = ({
     s=${width}x${height}:
     duration=${duration}:
     rate=${fps}:
-    c=${bgColor}
+    c=${bgcolor}
   `;
 
   const args = flatmap([

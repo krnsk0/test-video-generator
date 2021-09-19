@@ -8,10 +8,28 @@ import { play } from './play';
       duration: 10,
       width: 1280,
       height: 720,
-      outname: 'out.mp4',
+      outname: '10sec30fps720p.mp4',
+      bgcolor: 'blue'
     });
 
-    await play('out.mp4', 10);
+    await makeTestVideo({
+      fps: 33,
+      duration: 10,
+      width: 1280,
+      height: 720,
+      outname: '10sec33fps720p.mp4',
+      bgcolor: 'green'
+    });
+
+    await makeTestVideo({
+      fps: 25,
+      duration: 10,
+      width: 1280,
+      height: 720,
+      outname: '10sec25fps720p.mp4',
+      bgcolor: 'red'
+    });
+
   } catch (err) {
     console.log(err);
   }
