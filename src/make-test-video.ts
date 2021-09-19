@@ -3,7 +3,7 @@ import { generateAudio } from './generate-audio';
 import { text } from './text';
 import { joinFilters } from './utils';
 import { concatenate } from './concatenate';
-import { remove } from 'fs-extra';
+import { remove, ensureDir } from 'fs-extra';
 
 type IMakeTestVideo = {
   fps: number;
@@ -24,6 +24,8 @@ export const makeTestVideo = async ({
   height,
   outname,
 }: IMakeTestVideo): Promise<void> => {
+  await ensureDir('./tmp');
+
   const size = 40; // base font size
   const margin = 10;
 
@@ -66,8 +68,8 @@ export const makeTestVideo = async ({
 
   await concatenate('temp.mp4', 'temp.wav', outname);
 
-  await remove('./outout/temp.mp4');
-  await remove('./outout/temp.wav');
+  await remove('./outout/temp.mp4', (err) => console.log(err));
+  await remove('./outout/temp.wav', (err) => console.log(err));
 
   return Promise.resolve();
 };
