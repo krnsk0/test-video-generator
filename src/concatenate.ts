@@ -9,8 +9,8 @@ export const concatenate = async (
 ): Promise<void> => {
   const args = flatmap([
     ['-hide_banner'],
-    ['-i', `./output/${invideo}`],
-    ['-i', `./output/${inaudio}`],
+    ['-i', `./tmp/${invideo}`],
+    ['-i', `./tmp/${inaudio}`],
     ['-c:v', 'copy'],
     ['-c:a', 'aac'],
     ['-loglevel', 'warning'],

@@ -68,8 +68,7 @@ export const makeTestVideo = async ({
 
   await concatenate('temp.mp4', 'temp.wav', outname);
 
-  await remove('./outout/temp.mp4', (err) => console.log(err));
-  await remove('./outout/temp.wav', (err) => console.log(err));
+  await remove('./tmp');
 
   return Promise.resolve();
 };

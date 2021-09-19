@@ -48,7 +48,7 @@ export const generateVideo = ({
     ['-vf', filters],
     ['-loglevel', 'warning'],
     ['-y'],
-    [`./output/${outname}`],
+    [`./tmp/${outname}`],
   ]);
 
   // run ffmpeg

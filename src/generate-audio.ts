@@ -5,7 +5,7 @@ const pathToSox = require('sox-static-macos');
 export const generateAudio = async (seconds: number): Promise<void> => {
   const args = flatmap([
     ['./src/click.wav'],
-    ['./output/temp.wav'],
+    ['./tmp/temp.wav'],
     ['repeat', `${seconds - 1}`],
   ]);
   // run ffmpeg
