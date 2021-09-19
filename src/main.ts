@@ -10,7 +10,5 @@ import { play } from './play';
     outname: 'out.mp4',
   });
 
-  // play a video after generation
-  // optional dev velocity enhancement
   await play('out.mp4', 10);
 })();

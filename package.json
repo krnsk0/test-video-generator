@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/ffmpeg-static": "^3.0.0",
+    "@types/fs-extra": "^9.0.12",
     "ffmpeg-static": "^4.4.0",
     "ffplay-static": "^3.2.2",
+    "fs-extra": "^10.0.0",
     "prettier": "^2.4.1",
     "sox-static": "^1.0.0",
     "ts-node": "^10.2.1",

@@ -8,7 +8,7 @@ type IGenerate = {
   height?: number;
   fps?: number;
   bgColor?: string;
-  outName?: string;
+  outname?: string;
   play?: boolean;
   filters?: string;
 };
@@ -22,7 +22,7 @@ export const generateVideo = ({
   height = 720,
   fps = 25,
   bgColor = 'blue',
-  outName = 'out.mp4',
+  outname = 'temp.mp4',
   filters = '',
 }: IGenerate): Promise<void> => {
   /**
@@ -48,7 +48,7 @@ export const generateVideo = ({
     ['-vf', filters],
     ['-loglevel', 'warning'],
     ['-y'],
-    [`./output/${outName}`],
+    [`./output/${outname}`],
   ]);
 
   // run ffmpeg

@@ -2,6 +2,8 @@ import { generateVideo } from './generate-video';
 import { generateAudio } from './generate-audio';
 import { text } from './text';
 import { joinFilters } from './utils';
+import { concatenate } from './concatenate';
+import { remove } from 'fs-extra';
 
 type IMakeTestVideo = {
   fps: number;
@@ -30,6 +32,7 @@ export const makeTestVideo = async ({
     width,
     height,
     duration,
+    outname: 'temp.mp4',
     filters: joinFilters(
       // screen top center
       text({ text: `${outname}`, size, y: `${margin}` }),
@@ -60,6 +63,11 @@ export const makeTestVideo = async ({
   });
 
   await generateAudio(duration);
+
+  await concatenate('temp.mp4', 'temp.wav', outname);
+
+  await remove('./outout/temp.mp4');
+  await remove('./outout/temp.wav');
 
   return Promise.resolve();
 };
