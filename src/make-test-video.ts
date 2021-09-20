@@ -11,7 +11,7 @@ type IMakeTestVideo = {
   width: number;
   height: number;
   outname: string;
-  bgcolor: string
+  bgcolor: string;
 };
 
 /**
@@ -24,7 +24,7 @@ export const makeTestVideo = async ({
   width,
   height,
   outname,
-  bgcolor
+  bgcolor,
 }: IMakeTestVideo): Promise<void> => {
   await ensureDir('./tmp');
 
